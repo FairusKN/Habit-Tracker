@@ -1,0 +1,26 @@
+services:
+    ####################################################################################################
+    # PostgreSQL
+    ####################################################################################################
+    db:
+        image: postgres:16
+        ports:
+            - 5432:5432
+        volumes:
+            - .docker/db/data:/var/lib/postgresql/data
+            - .docker/db/sql:/docker-entrypoint-initdb.d
+        environment:
+            - POSTGRES_USER=russ
+            - POSTGRES_PASSWORD=testlmao
+            - POSTGRES_DB=habittracker
+
+
+    ####################################################################################################
+    # Adminer
+    ####################################################################################################
+    adminer:
+        image: adminer
+        ports:
+            - 9090:8080
+        depends_on:
+        - db
