@@ -18,6 +18,8 @@ model User {
   full_name String
   password  String
   habits    Habit[]
+
+  @@map("users")
 }
 
 model Habit {
@@ -25,19 +27,23 @@ model Habit {
   user           User       @relation(fields: [user_id], references: [id])
   user_id        String     @db.Uuid
   name           String
-  description    String
+  description    String?
   frequency_type Frequency  @default(DAILY)
-  target         String
+  target         Int
   created_at     DateTime   @default(now())
   habitLogs      HabitLog[]
+
+  @@map("habits")
 }
 
 model HabitLog {
   id       String   @id @default(uuid()) @db.Uuid
   habit    Habit    @relation(fields: [habit_id], references: [id])
   habit_id String   @db.Uuid
-  date     DateTime
+  date     DateTime @default(now())
   count    Int
+
+  @@map("habit_logs")
 }
 
 enum Frequency {
