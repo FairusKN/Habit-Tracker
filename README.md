@@ -20,4 +20,9 @@ To run with hot reload:
 bun run dev
 ```
 
+To Generate Prisma:
+```
+bunx prisma generate
+```
+
 This project was created using `bun init` in bun v1.3.12. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
